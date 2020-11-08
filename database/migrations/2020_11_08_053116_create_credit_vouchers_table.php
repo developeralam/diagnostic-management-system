@@ -22,6 +22,9 @@ class CreateCreditVouchersTable extends Migration
             $table->text('receivable_amount');
             $table->srting('received');
             $table->integer('account_id');
+            $table->integer('method_id');
+            $table->integer('check_no');
+            $table->integer('due_amount');
             $table->timestamps();
         });
     }
