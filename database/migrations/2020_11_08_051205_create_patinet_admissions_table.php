@@ -14,7 +14,27 @@ class CreatePatinetAdmissionsTable extends Migration
     public function up()
     {
         Schema::create('patinet_admissions', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('patient_type_id');
+            $table->integer('reference_id');
+            $table->string('patient_name');
+            $table->integer('patient_id');
+            $table->string('guardian_name');
+            $table->text('complains');
+            $table->integer('blood_id');
+            $table->integer('sex_id');
+            $table->integer('mobile_number');
+            $table->integer('age');
+            $table->date('booking_date');
+            $table->integer('ward_id');
+            $table->integer('cabin_id');
+            $table->integer('price');
+            $table->integer('days');
+            $table->integer('booking_fee');
+            $table->integer('total_amount');
+            $table->integer('discount');
+            $table->integer('payable_amount');
+            $table->integer('paid_amount');
             $table->timestamps();
         });
     }

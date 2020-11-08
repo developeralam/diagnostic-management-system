@@ -14,7 +14,14 @@ class CreatePrescriptionsTable extends Migration
     public function up()
     {
         Schema::create('prescriptions', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('patient_id');
+            $table->longText('disease_details');
+            $table->text('test_advice');
+            $table->integer('drug_id');
+            $table->integer('dose_id');
+            $table->integer('duration');
+            $table->date('date');
             $table->timestamps();
         });
     }

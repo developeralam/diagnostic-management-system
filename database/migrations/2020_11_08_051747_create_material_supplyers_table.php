@@ -14,7 +14,11 @@ class CreateMaterialSupplyersTable extends Migration
     public function up()
     {
         Schema::create('material_supplyers', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('company_name');
+            $table->string('contact');
+            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -14,7 +14,9 @@ class CreateDoesTable extends Migration
     public function up()
     {
         Schema::create('does', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('dose_name');
+            $table->integer('status');
             $table->timestamps();
         });
     }
