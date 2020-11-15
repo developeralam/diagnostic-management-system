@@ -14,7 +14,12 @@ class CreateCabinsTable extends Migration
     public function up()
     {
         Schema::create('cabins', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('ward_id');
+            $table->string('space_location');
+            $table->integer('price');
+            $table->integer('condition');
+            $table->integer('status');
             $table->timestamps();
         });
     }

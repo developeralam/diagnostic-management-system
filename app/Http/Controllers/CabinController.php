@@ -14,7 +14,7 @@ class CabinController extends Controller
      */
     public function index()
     {
-        //
+        return view('cabin.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class CabinController extends Controller
      */
     public function create()
     {
-        //
+        return view('cabin.create');
     }
 
     /**
@@ -35,7 +35,23 @@ class CabinController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'ward_id' => 'required|integer',
+            'space_location' => 'required|string',
+            'price' => 'required|string',
+            'condition' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+
+        $cabin = new Cabin;
+        $cabin->ward_id = $request->ward_id;
+        $cabin->space_location = $request->space_location;
+        $cabin->price = $request->price;
+        $cabin->condition = $request->condition;
+        $cabin->status = $request->status;
+        $cabin->save();
+        session()->flash('success', 'Cabin Inserted Successfully');
+        return redirect()->route('cabin.index');
     }
 
     /**
@@ -55,9 +71,10 @@ class CabinController extends Controller
      * @param  \App\Models\Cabin  $cabin
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cabin $cabin)
+    public function edit($id)
     {
-        //
+        $cabin = Cabin::find($id);
+        return view('cabin.edit', compact('cabin'));
     }
 
     /**
@@ -67,9 +84,25 @@ class CabinController extends Controller
      * @param  \App\Models\Cabin  $cabin
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cabin $cabin)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'ward_id' => 'required|integer',
+            'space_location' => 'required|string',
+            'price' => 'required|string',
+            'condition' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+
+        $cabin = Cabin::find($id);
+        $cabin->ward_id = $request->ward_id;
+        $cabin->space_location = $request->space_location;
+        $cabin->price = $request->price;
+        $cabin->condition = $request->condition;
+        $cabin->status = $request->status;
+        $cabin->save();
+        session()->flash('success', 'Cabin Updated Successfully');
+        return redirect()->route('cabin.index');
     }
 
     /**
@@ -78,8 +111,11 @@ class CabinController extends Controller
      * @param  \App\Models\Cabin  $cabin
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cabin $cabin)
+    public function destroy($id)
     {
-        //
+        $cabin = Cabin::find($id);
+        $cabin->delete();
+        session()->flash('success', 'Cabin Deleted Successfully');
+        return redirect()->route('cabin.index');
     }
 }

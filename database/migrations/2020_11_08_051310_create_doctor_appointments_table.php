@@ -14,7 +14,13 @@ class CreateDoctorAppointmentsTable extends Migration
     public function up()
     {
         Schema::create('doctor_appointments', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('doctor_id');
+            $table->integer('fee_type');
+            $table->integer('amount');
+            $table->integer('day_id');
+            $table->integer('shift_id');
+            $table->time('in_time');
+            $table->time('out_time');
             $table->timestamps();
         });
     }

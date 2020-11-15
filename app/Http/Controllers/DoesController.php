@@ -14,7 +14,7 @@ class DoesController extends Controller
      */
     public function index()
     {
-        //
+        return view('dose.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class DoesController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +35,17 @@ class DoesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'dose_name' => 'required|string',
+            'status' =>'required|integer',
+        ]);
+
+        $dose = new Does;
+        $dose->dose_name = $request->dose_name;
+        $dose->status = $request->status;
+        $dose->save();
+        session()->flash('success', 'Dose Inserted Successfully');
+        return redirect()->route('dose.index');
     }
 
     /**
@@ -78,8 +88,11 @@ class DoesController extends Controller
      * @param  \App\Models\Does  $does
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Does $does)
+    public function destroy($id)
     {
-        //
+        $dose = Does::find($id);
+        $dose->delete();
+        session()->flash('success', 'Dose Deleted Successfully');
+        return redirect()->route('dose.index');
     }
 }

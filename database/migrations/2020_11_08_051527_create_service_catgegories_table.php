@@ -14,7 +14,9 @@ class CreateServiceCatgegoriesTable extends Migration
     public function up()
     {
         Schema::create('service_catgegories', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('category_name');
+            $table->integer('status');
             $table->timestamps();
         });
     }

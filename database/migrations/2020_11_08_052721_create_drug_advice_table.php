@@ -14,7 +14,9 @@ class CreateDrugAdviceTable extends Migration
     public function up()
     {
         Schema::create('drug_advice', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->text('drug_advice');
+            $table->integer('status');
             $table->timestamps();
         });
     }

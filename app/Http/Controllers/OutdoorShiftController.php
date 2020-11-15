@@ -24,7 +24,7 @@ class OutdoorShiftController extends Controller
      */
     public function create()
     {
-        //
+        return view('outdoorshift.create');
     }
 
     /**
@@ -35,7 +35,18 @@ class OutdoorShiftController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|string',
+            'rank' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+        $shift = new OutdoorShift;
+        $shift->name = $request->name;
+        $shift->rank = $request->rank;
+        $shift->status = $request->status;
+        $shift->save();
+        session()->flash('success', 'Outdoor Shift Added Successfully');
+        return back();
     }
 
     /**
@@ -44,9 +55,9 @@ class OutdoorShiftController extends Controller
      * @param  \App\Models\OutdoorShift  $outdoorShift
      * @return \Illuminate\Http\Response
      */
-    public function show(OutdoorShift $outdoorShift)
+    public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -55,9 +66,10 @@ class OutdoorShiftController extends Controller
      * @param  \App\Models\OutdoorShift  $outdoorShift
      * @return \Illuminate\Http\Response
      */
-    public function edit(OutdoorShift $outdoorShift)
+    public function edit($id)
     {
-        //
+        $outdoors = OutdoorShift::find($id);
+        return view('outdoorshift.edit', compact('outdoors'));
     }
 
     /**
@@ -67,9 +79,20 @@ class OutdoorShiftController extends Controller
      * @param  \App\Models\OutdoorShift  $outdoorShift
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, OutdoorShift $outdoorShift)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|string',
+            'rank' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+        $shift = OutdoorShift::find($id);
+        $shift->name = $request->name;
+        $shift->rank = $request->rank;
+        $shift->status = $request->status;
+        $shift->save();
+        session()->flash('success', 'Outdoor Shift Updated Successfully');
+        return redirect()->route('outdoorshift.create');
     }
 
     /**
@@ -78,8 +101,11 @@ class OutdoorShiftController extends Controller
      * @param  \App\Models\OutdoorShift  $outdoorShift
      * @return \Illuminate\Http\Response
      */
-    public function destroy(OutdoorShift $outdoorShift)
+    public function destroy($id)
     {
-        //
+        $data = OutdoorShift::find($id);
+        $data->delete();
+        session()->flash('success', 'Outdoor Shift Deleted Successfully');
+        return back();
     }
 }

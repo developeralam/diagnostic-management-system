@@ -14,7 +14,7 @@ class FoodAdviceController extends Controller
      */
     public function index()
     {
-        //
+        return view('food-advice.index');
     }
 
     /**
@@ -35,7 +35,16 @@ class FoodAdviceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'food_name' => 'required|string',
+            'status' =>'required|integer',
+        ]);
+        $foodAdvice = new FoodAdvice;
+        $foodAdvice->food_name = $request->food_name;
+        $foodAdvice->status = $request->status;
+        $foodAdvice->save();
+        session()->flash('success', 'Food Advice Added Successfull');
+        return redirect()->route('foodadvice.index');
     }
 
     /**
@@ -78,8 +87,11 @@ class FoodAdviceController extends Controller
      * @param  \App\Models\FoodAdvice  $foodAdvice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(FoodAdvice $foodAdvice)
+    public function destroy($id)
     {
-        //
+        $foodAdvice = FoodAdvice::find($id);
+        $foodAdvice->delete();
+        session()->flash('success', 'Food Advice Deleted Successfull');
+        return redirect()->route('foodadvice.index');
     }
 }

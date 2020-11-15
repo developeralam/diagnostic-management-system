@@ -15,6 +15,11 @@ class CreateFundTransfersTable extends Migration
     {
         Schema::create('fund_transfers', function (Blueprint $table) {
             $table->id();
+            $table->date('date');
+            $table->integer('form_account_id');
+            $table->integer('to_acccount_id');
+            $table->integer('amount');
+            $table->longText('desc');
             $table->timestamps();
         });
     }

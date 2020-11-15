@@ -24,7 +24,7 @@ class WardController extends Controller
      */
     public function create()
     {
-        //
+        return view('ward.create');
     }
 
     /**
@@ -35,7 +35,16 @@ class WardController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'ward_name' => 'required|string',
+            'status' => 'required|integer',
+        ]);
+        $ward = new Ward;
+        $ward->ward_name = $request->ward_name;
+        $ward->status = $request->status;
+        $ward->save();
+        session()->flash('success', 'Ward Added Successfully');
+        return back();
     }
 
     /**
@@ -55,9 +64,10 @@ class WardController extends Controller
      * @param  \App\Models\Ward  $ward
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ward $ward)
+    public function edit($id)
     {
-        //
+        $ward = Ward::find($id);
+        return view('ward.edit', compact('ward'));
     }
 
     /**
@@ -67,9 +77,18 @@ class WardController extends Controller
      * @param  \App\Models\Ward  $ward
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ward $ward)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'ward_name' => 'required|string',
+            'status' => 'required|integer',
+        ]);
+        $ward = Ward::find($id);
+        $ward->ward_name = $request->ward_name;
+        $ward->status = $request->status;
+        $ward->save();
+        session()->flash('success', 'Ward Updated Successfully');
+        return redirect()->route('ward.create');
     }
 
     /**
@@ -78,8 +97,11 @@ class WardController extends Controller
      * @param  \App\Models\Ward  $ward
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ward $ward)
+    public function destroy($id)
     {
-        //
+        $ward = Ward::find($id);
+        $ward->delete();
+        session()->flash('success', 'Ward Deleted Successfully');
+        return back();
     }
 }

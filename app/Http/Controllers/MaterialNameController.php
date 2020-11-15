@@ -14,7 +14,7 @@ class MaterialNameController extends Controller
      */
     public function index()
     {
-        //
+        return view('materialname.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class MaterialNameController extends Controller
      */
     public function create()
     {
-        //
+        return view('materialname.create');
     }
 
     /**
@@ -35,7 +35,19 @@ class MaterialNameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'material_name' => 'required|string',
+            'unit_id' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+
+        $material = new MaterialName;
+        $material->material_name = $request->material_name;
+        $material->unit_id = $request->unit_id;
+        $material->status = $request->status;
+        $material->save();
+        session()->flash('success', 'Material Added Successfully');
+        return redirect()->route('materialname.index');
     }
 
     /**
@@ -46,7 +58,7 @@ class MaterialNameController extends Controller
      */
     public function show(MaterialName $materialName)
     {
-        //
+        
     }
 
     /**
@@ -55,9 +67,10 @@ class MaterialNameController extends Controller
      * @param  \App\Models\MaterialName  $materialName
      * @return \Illuminate\Http\Response
      */
-    public function edit(MaterialName $materialName)
+    public function edit($id)
     {
-        //
+        $material = MaterialName::find($id);
+        return view('materialname.edit', compact('material'));
     }
 
     /**
@@ -67,9 +80,21 @@ class MaterialNameController extends Controller
      * @param  \App\Models\MaterialName  $materialName
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MaterialName $materialName)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'material_name' => 'required|string',
+            'unit_id' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+
+        $material = MaterialName::find($id);
+        $material->material_name = $request->material_name;
+        $material->unit_id = $request->unit_id;
+        $material->status = $request->status;
+        $material->save();
+        session()->flash('success', 'Material Updated Successfully');
+        return redirect()->route('materialname.index');
     }
 
     /**
@@ -78,8 +103,11 @@ class MaterialNameController extends Controller
      * @param  \App\Models\MaterialName  $materialName
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MaterialName $materialName)
+    public function destroy($id)
     {
-        //
+        $material = MaterialName::find($id);
+        $material->delete();
+        session()->flash('success', 'Material Name Deleted Successfully');
+        return redirect()->route('materialname.index');
     }
 }

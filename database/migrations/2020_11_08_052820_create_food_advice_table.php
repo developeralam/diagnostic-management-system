@@ -14,7 +14,9 @@ class CreateFoodAdviceTable extends Migration
     public function up()
     {
         Schema::create('food_advice', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->text('food_name');
+            $table->integer('status');
             $table->timestamps();
         });
     }

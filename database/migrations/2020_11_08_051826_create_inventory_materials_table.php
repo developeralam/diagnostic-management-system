@@ -14,7 +14,12 @@ class CreateInventoryMaterialsTable extends Migration
     public function up()
     {
         Schema::create('inventory_materials', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('material_id');
+            $table->integer('unit_id');
+            $table->integer('supplyer_id');
+            $table->integer('quantity');
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }

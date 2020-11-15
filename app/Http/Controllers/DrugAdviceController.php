@@ -14,7 +14,7 @@ class DrugAdviceController extends Controller
      */
     public function index()
     {
-        //
+        return view('drug-advice.index');
     }
 
     /**
@@ -35,7 +35,16 @@ class DrugAdviceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'drug_advice' => 'required|string',
+            'status' =>'required|integer',
+        ]);
+        $drugAdvice = new DrugAdvice;
+        $drugAdvice->drug_advice = $request->drug_advice;
+        $drugAdvice->status = $request->status;
+        $drugAdvice->save();
+        session()->flash('success', 'Drug Advice Added Successfull');
+        return redirect()->route('drugadvice.index');
     }
 
     /**
@@ -78,8 +87,12 @@ class DrugAdviceController extends Controller
      * @param  \App\Models\DrugAdvice  $drugAdvice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DrugAdvice $drugAdvice)
+    public function destroy($id)
     {
-        //
+
+        $drugAdvice = DrugAdvice::find($id);
+        $drugAdvice->delete();
+        session()->flash('success', 'Drug Advice Delted Successfull');
+        return redirect()->route('drugadvice.index');
     }
 }

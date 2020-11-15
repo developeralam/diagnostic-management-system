@@ -14,7 +14,7 @@ class DrugDurationController extends Controller
      */
     public function index()
     {
-        //
+        return view('drug-duration.index');
     }
 
     /**
@@ -35,7 +35,16 @@ class DrugDurationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'duration_name' => 'required|string',
+            'status' => 'required|integer',
+        ]);
+        $duration = new DrugDuration;
+        $duration->duration_name = $request->duration_name;
+        $duration->status = $request->status;
+        $duration->save();
+        session()->flash('success', 'Drug Duration Added Successfully');
+        return redirect()->route('drugduration.index');
     }
 
     /**
@@ -78,8 +87,11 @@ class DrugDurationController extends Controller
      * @param  \App\Models\DrugDuration  $drugDuration
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DrugDuration $drugDuration)
+    public function destroy($id)
     {
-        //
+        $duration = DrugDuration::find($id);
+        $duration->delete();
+        session()->flash('success', 'Drug Duration Deleted Successfully');
+        return redirect()->route('drugduration.index');
     }
 }

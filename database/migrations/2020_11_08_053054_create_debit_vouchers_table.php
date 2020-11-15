@@ -14,7 +14,18 @@ class CreateDebitVouchersTable extends Migration
     public function up()
     {
         Schema::create('debit_vouchers', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->integer('paid_to');
+            $table->integer('reference_id');
+            $table->date('payment_date');
+            $table->integer('chart_of_accounts_id');
+            $table->text('desc');
+            $table->integer('payable_amount');
+            $table->integer('paid');
+            $table->integer('account_id');
+            $table->integer('method_id');
+            $table->integer('check_no');
+            $table->integer('due_amount');
             $table->timestamps();
         });
     }

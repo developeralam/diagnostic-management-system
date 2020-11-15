@@ -14,7 +14,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        //
+        return view('hospitalservice.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('hospitalservice.create');
     }
 
     /**
@@ -35,7 +35,22 @@ class ServiceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'service_name' => 'required|string',
+            'service_code' => 'required|integer',
+            'service_price' => 'required|integer',
+            'service_category' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+        $service = new Service;
+        $service->service_name = $request->service_name;
+        $service->service_code = $request->service_code;
+        $service->service_price = $request->service_price;
+        $service->service_category = $request->service_category;
+        $service->status = $request->status;
+        $service->save();
+        session()->flash('success', 'Service Inserted Successfully');
+        return redirect()->route('hospitalservice.index');
     }
 
     /**
@@ -55,9 +70,10 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function edit(Service $service)
+    public function edit($id)
     {
-        //
+        $service = Service::find($id);
+        return view('hospitalservice.edit', compact('service'));
     }
 
     /**
@@ -67,9 +83,24 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'service_name' => 'required|string',
+            'service_code' => 'required|integer',
+            'service_price' => 'required|integer',
+            'service_category' => 'required|integer',
+            'status' => 'required|integer',
+        ]);
+        $service = Service::find($id);
+        $service->service_name = $request->service_name;
+        $service->service_code = $request->service_code;
+        $service->service_price = $request->service_price;
+        $service->service_category = $request->service_category;
+        $service->status = $request->status;
+        $service->save();
+        session()->flash('success', 'Service Updated Successfully');
+        return redirect()->route('hospitalservice.index');
     }
 
     /**
@@ -78,8 +109,11 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Service $service)
+    public function destroy($id)
     {
-        //
+        $service = Service::find($id);
+        $service->delete();
+        session()->flash('success', 'Service Deleted Successfully');
+        return redirect()->route('hospitalservice.index');
     }
 }

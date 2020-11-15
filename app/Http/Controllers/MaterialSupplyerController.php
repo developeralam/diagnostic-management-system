@@ -14,7 +14,7 @@ class MaterialSupplyerController extends Controller
      */
     public function index()
     {
-        //
+        return view('materialsupplyer.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class MaterialSupplyerController extends Controller
      */
     public function create()
     {
-        //
+        return view('materialsupplyer.create');
     }
 
     /**
@@ -35,7 +35,20 @@ class MaterialSupplyerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|string',
+            'company_name' => 'required|string',
+            'contact' => 'required|string',
+            'status' => 'required|integer',
+        ]);
+        $supplyer = new MaterialSupplyer;
+        $supplyer->name = $request->name;
+        $supplyer->company_name = $request->company_name;
+        $supplyer->contact = $request->contact;
+        $supplyer->status = $request->status;
+        $supplyer->save();
+        session()->flash('success', 'Supplyer Added Successfully');
+        return redirect()->route('materialsupplyer.index');
     }
 
     /**
@@ -55,9 +68,10 @@ class MaterialSupplyerController extends Controller
      * @param  \App\Models\MaterialSupplyer  $materialSupplyer
      * @return \Illuminate\Http\Response
      */
-    public function edit(MaterialSupplyer $materialSupplyer)
+    public function edit($id)
     {
-        //
+        $materialsupplyer = MaterialSupplyer::find($id);
+        return view('materialsupplyer.edit', compact('materialsupplyer'));
     }
 
     /**
@@ -67,9 +81,22 @@ class MaterialSupplyerController extends Controller
      * @param  \App\Models\MaterialSupplyer  $materialSupplyer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, MaterialSupplyer $materialSupplyer)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'name' => 'required|string',
+            'company_name' => 'required|string',
+            'contact' => 'required|string',
+            'status' => 'required|integer',
+        ]);
+        $supplyer = MaterialSupplyer::find($id);
+        $supplyer->name = $request->name;
+        $supplyer->company_name = $request->company_name;
+        $supplyer->contact = $request->contact;
+        $supplyer->status = $request->status;
+        $supplyer->save();
+        session()->flash('success', 'Supplyer Updated Successfully');
+        return redirect()->route('materialsupplyer.index');
     }
 
     /**
@@ -78,8 +105,11 @@ class MaterialSupplyerController extends Controller
      * @param  \App\Models\MaterialSupplyer  $materialSupplyer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(MaterialSupplyer $materialSupplyer)
+    public function destroy($id)
     {
-        //
+        $materialsupplyer = MaterialSupplyer::find($id);
+        $materialsupplyer->delete($id);
+        session()->flash('success', 'Material Supplyer Delted Successfully');
+        return redirect()->route('materialsupplyer.index');
     }
 }

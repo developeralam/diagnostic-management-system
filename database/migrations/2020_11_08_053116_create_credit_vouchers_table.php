@@ -14,7 +14,17 @@ class CreateCreditVouchersTable extends Migration
     public function up()
     {
         Schema::create('credit_vouchers', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('received_form');
+            $table->integer('reference_id');
+            $table->integer('chart_of_accounts_id');
+            $table->text('desc');
+            $table->text('receivable_amount');
+            $table->string('received');
+            $table->integer('account_id');
+            $table->integer('method_id');
+            $table->integer('check_no');
+            $table->integer('due_amount');
             $table->timestamps();
         });
     }

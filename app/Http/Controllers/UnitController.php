@@ -14,7 +14,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        //
+        return view('unit.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class UnitController extends Controller
      */
     public function create()
     {
-        //
+        return view('unit.create');
     }
 
     /**
@@ -35,7 +35,16 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            'unit_name' => 'required|string',
+            'status' => 'required|integer',
+        ]);
+        $unit = new Unit;
+        $unit->unit_name = $request->unit_name;
+        $unit->status = $request->status;
+        $unit->save();
+        session()->flash('success', 'Unit Saved Successfully');
+        return redirect()->route('unit.index');
     }
 
     /**
@@ -55,9 +64,10 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unit $unit)
+    public function edit($id)
     {
-        //
+        $unit =  Unit::find($id);
+        return view('unit.edit', compact('unit'));
     }
 
     /**
@@ -67,9 +77,18 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unit $unit)
+    public function update(Request $request, $id)
     {
-        //
+        $validateData = $request->validate([
+            'unit_name' => 'required|string',
+            'status' => 'required|integer',
+        ]);
+        $unit = Unit::find($id);
+        $unit->unit_name = $request->unit_name;
+        $unit->status = $request->status;
+        $unit->save();
+        session()->flash('success', 'Unit Updated Successfully');
+        return redirect()->route('unit.index');
     }
 
     /**
@@ -78,8 +97,11 @@ class UnitController extends Controller
      * @param  \App\Models\Unit  $unit
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unit $unit)
+    public function destroy($id)
     {
-        //
+        $unit = Unit($id);
+        $unit->delete();
+        session()->flash('success', 'Unit Deleted Successfully');
+        return redirect()->route('unit.index');
     }
 }

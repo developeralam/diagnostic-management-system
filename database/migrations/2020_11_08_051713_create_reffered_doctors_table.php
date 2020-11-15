@@ -14,7 +14,12 @@ class CreateRefferedDoctorsTable extends Migration
     public function up()
     {
         Schema::create('reffered_doctors', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('doctor_name');
+            $table->text('doctor_details');
+            $table->string('organiation');
+            $table->integer('mobile_number');
+            $table->integer('status');
             $table->timestamps();
         });
     }

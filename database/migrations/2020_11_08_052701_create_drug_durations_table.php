@@ -14,7 +14,9 @@ class CreateDrugDurationsTable extends Migration
     public function up()
     {
         Schema::create('drug_durations', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('duration_name');
+            $table->integer('status');
             $table->timestamps();
         });
     }

@@ -14,7 +14,10 @@ class CreateOutdoorShiftsTable extends Migration
     public function up()
     {
         Schema::create('outdoor_shifts', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->integer('rank');
+            $table->integer('status');
             $table->timestamps();
         });
     }

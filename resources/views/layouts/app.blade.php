@@ -38,7 +38,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">The Thyroid Center ltd, Dhanmondi</a>
+        <a href="#" class="nav-link">Bangladesh Eye Care Hospital, Dhanmondi</a>
       </li>
     </ul>
 
@@ -187,10 +187,43 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="{{route('appointment.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>Appointment Booking</p>
                 </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('appointment.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Daily Appointment</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('appointment.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Outdoor Due</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('appointment.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Settings</p>
+                  <i class="fas fa-angle-left right"></i>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{route('appointment.create')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Assign Doctor</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('outdoorshift.create')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Outdoor Shift</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -207,14 +240,53 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="{{route('patinetadmission.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>New Admission</p>
                 </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('patinetadmission.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Admitted Patient</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('patinetadmission.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Released Patient</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('patinetadmission.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Due Collection</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('appointment.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Settings</p>
+                  <i class="fas fa-angle-left right"></i>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{route('ward.create')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Ward</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('cabin.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Seat/Cabin</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
-
+          
           <!-- Patient Admission -->
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -227,10 +299,61 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="{{route('investigation.create')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>New Investigation</p>
                 </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('investigation.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Due Recive</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('investigation.create')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Deliver Reports</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('appointment.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Settings</p>
+                  <i class="fas fa-angle-left right"></i>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{route('servicecatgeories.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Categories</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('hospitalservice.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Hospital Services</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('appointment.create')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Report Template</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('appointment.create')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Reffered Doctor</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('agent.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Comission Refers</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -247,9 +370,42 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="pages/layout/top-nav.html" class="nav-link">
+                <a href="" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>Assign Commission</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Assign Commission</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('appointment.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Settings</p>
+                  <i class="fas fa-angle-left right"></i>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{route('appointment.create')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Referred Doctor</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('appointment.create')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Referred List</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a href="" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Reffered Commission Report</p>
                 </a>
               </li>
             </ul>
@@ -269,8 +425,41 @@
               <li class="nav-item">
                 <a href="pages/layout/top-nav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>Collect Sample</p>
                 </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('appointment.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Settings</p>
+                  <i class="fas fa-angle-left right"></i>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{route('inventorymaterial.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Material</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('materialsupplyer.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Material Supplyer</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('materialname.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Material Name</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('unit.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Unit</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -289,8 +478,47 @@
               <li class="nav-item">
                 <a href="pages/layout/top-nav.html" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Top Navigation</p>
+                  <p>Create Prescription</p>
                 </a>
+              </li>
+              <li class="nav-item">
+                <a href="pages/layout/top-nav.html" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>All Prescription</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('appointment.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Settings</p>
+                  <i class="fas fa-angle-left right"></i>
+                </a>
+                <ul class="nav nav-treeview">
+                  <li class="nav-item">
+                    <a href="{{route('dose.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Dose</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('drugduration.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Drug Duration</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('drugadvice.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Drug Advice</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{route('foodadvice.index')}}" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>Food Advice</p>
+                    </a>
+                  </li>
+                </ul>
               </li>
             </ul>
           </li>
@@ -532,6 +760,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
 <script src="{{asset('/public/plugins/jquery/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('/public/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
@@ -565,5 +794,8 @@
 <script src="{{asset('public/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('public/dist/js/pages/dashboard.js')}}"></script>
+<!-- Custom js -->
+@yield('ajax')
+<script src="{{asset('public/dist/js/custom.js')}}"></script>
 </body>
 </html>

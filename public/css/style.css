@@ -1,3 +1,6 @@
 .aside-menu p{
 	font-size:12px!important;
 }
+input[type="text"], input[type="number"], input[type="date"], select{
+	height:33px!important;
+}
